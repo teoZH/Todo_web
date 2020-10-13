@@ -1,0 +1,26 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO app</title>
+    <link rel="stylesheet" href="{% static 'todo/main.css' %}">
+</head>
+<body>
+    <h1>My TODO Web Application</h1>
+    {% if todos %}
+    {% for todo in todos %}
+    <div class="wrapper-style">
+        <h3>{{ todo }}</h3>
+        <div class="description">
+            <div>{{ todo.description }}</div>
+            {% if todo.is_done %}
+            <p>DONE</p>
+            {% else %}
+            <p> NOT DONE</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>
