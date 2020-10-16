@@ -7,20 +7,33 @@
 </head>
 <body>
     <h1>My TODO Web Application</h1>
+    <div class="wrapper">
+        <div class="input">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.title.label_tag }}<br>
+                    {{ form.title }}<br>
+                    {{ form.description.label_tag }}<br>
+                    {{ form.description }}<br>
+                    <button type="submit">Submit</button>
+                </form>
+        </div>
     {% if todos %}
     {% for todo in todos %}
-    <div class="wrapper-style">
-        <h3>{{ todo }}</h3>
-        <div class="description">
-            <div>{{ todo.description }}</div>
-            {% if todo.is_done %}
-            <p>DONE</p>
-            {% else %}
-            <p> NOT DONE</p>
-            {% endif %}
+        <div class="todos">
+            <h3>{{ todo }}</h3>
+            <div class="description">
+                <div>{{ todo.description }}</div>
+                {% if todo.is_done %}
+                <p id="first">DONE</p>
+                {% else %}
+                <p id="second">NOT DONE</p>
+                {% endif %}
+                <p><a href="{% url 'update_todo' todo.id %}">edit</a></p>
+            </div>
         </div>
-    </div>
     {% endfor %}
     {% endif %}
+    </div>
 </body>
 </html>

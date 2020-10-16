@@ -2,8 +2,29 @@ h1 {
     text-align : center;
 }
 
-.wrapper-style {
-    text-align : center;
-    height:auto;
-    border: solid 5px green;.
+.todos,.input {
+    display:inline-block;
 }
+
+.todos {
+    text-align : center;
+    border: solid 5px green;
+    width: 62%;
+    float: right;
+
+}
+
+.input {
+    width: 30%;
+    float:left;
+    margin: 10px;
+}
+
+#first {
+    color: green;
+}
+
+#second {
+    color: red;
+}
+
