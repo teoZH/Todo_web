@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todo_app'
+    'todo_app',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'testdb',
         'USER': 'postgres',
         'PASSWORD': 'qwerty',
-        'HOST':'127.0.0.1',
+        'HOST': '127.0.0.1',
         'PORT': '5432'
     }
 }

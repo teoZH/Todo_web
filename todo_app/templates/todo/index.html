@@ -30,6 +30,7 @@
                 <p id="second">NOT DONE</p>
                 {% endif %}
                 <p><a href="{% url 'update_todo' todo.id %}">edit</a></p>
+                <p><a href="{% url 'delete_todo' todo.id %}">delete</a></p>
             </div>
         </div>
     {% endfor %}

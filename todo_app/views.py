@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 
 def index(request, obj=None):
+    todos = Todo.objects.all()
     if request.method == 'POST':
         form = TodoInput(request.POST)
         if form.is_valid():
@@ -17,11 +18,10 @@ def index(request, obj=None):
         else:
             initial_value = None
         form = TodoInput(initial=initial_value)
-        todos = Todo.objects.all()
-        context = {
-            'todos': todos,
-            'form': form
-        }
+    context = {
+        'todos': todos,
+        'form': form
+    }
     return render(request, 'todo/index.html', context)
 
 
@@ -33,7 +33,10 @@ def update(request, todo_id):
             return redirect('index')
         form = TodoInput(request.POST)
         if form.is_valid():
-            return HttpResponse('fail')
+            form.cleaned_data.update({'id': todo_id})
+            todo = Todo(**form.cleaned_data)
+            todo.save()
+            return redirect('index')
     else:
         try:
             todo = Todo.objects.get(pk=todo_id)
@@ -41,3 +44,12 @@ def update(request, todo_id):
             return redirect('index')
 
         return index(request, todo)
+
+
+def delete(request, todo_id):
+    try:
+        todo = Todo.objects.get(pk=todo_id)
+        todo.delete()
+    except ObjectDoesNotExist:
+        return redirect('index')
+    return redirect('index')
